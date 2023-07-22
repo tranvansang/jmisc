@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"baseUrl": ".",
+		"outDir": "./esm",
+		"declaration": true,
+		"inlineSourceMap": true,
+		"downlevelIteration": true,
+		"strictNullChecks": true,
+		"moduleResolution": "Node"
+	}
+}

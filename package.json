@@ -1,0 +1,26 @@
+{
+  "name": "jsmisc",
+  "version": "0.0.1",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "exports": {
+    ".": {
+			"import": "./esm/index.js",
+			"require": "./cjs/index.js"
+		}
+  },
+  "repository": "https://github.com/tranvansang/jsmisc.git",
+  "author": "Sang Tran <t@sang.jp>",
+  "license": "MIT",
+  "files": [
+    "cjs",
+    "esm"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.4.3",
+    "@types/react": "^18.2.15",
+    "type-fest": "^4.0.0",
+    "typescript": "^5.1.6"
+  },
+  "packageManager": "yarn@3.6.1"
+}

@@ -1,5 +1,3 @@
-import {Promisable} from './type'
-
 export function negate <Params extends any[], Result>(
 	f: (...params: Params) => Result
 ) {

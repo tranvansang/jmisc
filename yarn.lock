@@ -44,9 +44,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsmisc@workspace:.":
+"jmisc@workspace:.":
   version: 0.0.0-use.local
-  resolution: "jsmisc@workspace:."
+  resolution: "jmisc@workspace:."
   dependencies:
     "@types/node": ^20.4.3
     "@types/react": ^18.2.15

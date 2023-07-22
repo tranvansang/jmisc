@@ -1,5 +1,5 @@
 {
-  "name": "jsmisc",
+  "name": "jmisc",
   "version": "0.0.1",
   "main": "cjs/index.js",
   "module": "esm/index.js",
@@ -14,7 +14,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
-    "prepublish": "yarn build"
+    "prepublish": "rm -rf esm cjs && yarn build"
   },
   "files": [
     "cjs",

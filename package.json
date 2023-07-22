@@ -5,13 +5,17 @@
   "module": "esm/index.js",
   "exports": {
     ".": {
-			"import": "./esm/index.js",
-			"require": "./cjs/index.js"
-		}
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js"
+    }
   },
   "repository": "https://github.com/tranvansang/jsmisc.git",
   "author": "Sang Tran <t@sang.jp>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
+    "prepublish": "yarn build"
+  },
   "files": [
     "cjs",
     "esm"

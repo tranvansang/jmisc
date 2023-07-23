@@ -1,8 +1,7 @@
 {
   "name": "jmisc",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "cjs/index.js",
-  "module": "esm/index.js",
   "exports": {
     ".": {
       "import": "./esm/index.js",
@@ -13,8 +12,7 @@
   "author": "Sang Tran <t@sang.jp>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
-    "prepublish": "rm -rf esm cjs && yarn build"
+    "prepublish": "./compile.sh"
   },
   "files": [
     "cjs",

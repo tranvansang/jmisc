@@ -1,5 +1,5 @@
 // export const floatToStr = (f: number, ndigit = 2) => String(Math.round(f * (10 ** ndigit)) / (10 ** ndigit))
-import {isBrowser} from './dom'
+import {isBrowser} from './dom.js'
 
 export function capitalize(str: string) {
 	return str && str[0]!.toUpperCase() + str.slice(1)

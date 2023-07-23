@@ -1,4 +1,4 @@
-import {Promisable} from './type'
+import {Promisable} from './type.js'
 
 // https://github.com/then/is-promise/blob/ec9bd8a3f576324a1343069a2d6c2fa35a623939/index.js
 function isPromise(obj) {

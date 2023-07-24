@@ -23,7 +23,7 @@ type ChainResult<P> = P extends [infer F1, ...any[]]
 // f1 => (...p1) => f1(noop, ...p1)
 // (f2, f1) => (...p2) => f2((...p1) => f1(noop, ...p1), ...p2)
 // (f3, f2, f1) => (...p3) => f3((...p2) => f2((...p1) => f1(noop, ...p1), ...p2), ...p3)
-export function chain<P extends any[]>(...fs: P): ChainResult<P> {
+export function chain<P extends IChainable[]>(...fs: P): ChainResult<P> {
 	return fs.reduceRight(
 		(acc, cur) => <P1 extends any[]>(...params: P1) => cur(acc as <T>() => T, ...params),
 		noop

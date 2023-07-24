@@ -7,4 +7,6 @@ export {recursiveSet, deepHas, get, set, deepPick, pick, omit, pluck, objectMap,
 export {capitalize, uncapitalize, base64ToURI, uriToBase64, isoBtoa, isoAtob, normalizeVietnamese} from './str.js'
 export {sleep, cancellableSleep, setTimeoutUntil, setTimeoutUnlimited, timeoutWait} from './time.js'
 export {as} from './type.js'
+
 export type {IgnoreLastIfVoid, UndefinedToNull, Nullable, UnionToIntersection, AllOrNone, Promisable} from './type.js'
+export type {IChainable} from './func.js'

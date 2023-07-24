@@ -11,8 +11,12 @@ export function not<T extends boolean>(b: T): T extends true ? false : true {
 	return (!b) as T extends true ? false : true
 }
 
+export interface IChainable<Params extends any[] = any, Result = any> {
+	(next: () => any, ...params: Params): Result
+}
+
 type ChainResult<P> = P extends [infer F1, ...any[]]
-	? F1 extends (next: () => any, ...params: infer Params) => infer R
+	? F1 extends IChainable<infer Params, infer R>
 		? (...params: Params) => R
 		: never
 	: () => void

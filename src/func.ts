@@ -15,7 +15,7 @@ export interface IChainable<Params extends any[] = any, Result = any> {
 	(next: () => any, ...params: Params): Result
 }
 
-type ChainResult<P> = P extends [infer F1, ...any[]]
+type ChainResult<P extends IChainable[]> = P extends [infer F1, ...any[]]
 	? F1 extends IChainable<infer Params, infer R>
 		? (...params: Params) => R
 		: never
@@ -27,5 +27,5 @@ export function chain<P extends IChainable[]>(...fs: P): ChainResult<P> {
 	return fs.reduceRight(
 		(acc, cur) => <P1 extends any[]>(...params: P1) => cur(acc as <T>() => T, ...params),
 		noop
-	)
+	) as any
 }

@@ -4,7 +4,7 @@
 
 ```typescript
 export {isBrowser, ensureBrowser} from './dom'
-export {negate, identity, noop, not, chain} from './func'
+export {negate, identity, noop, not} from './func'
 export {asyncIteratorToArray, readableStreamToAsyncIterator, concatBuffers} from './iter-buffer'
 export {makeLazy, makeMemoize, makeLazySync} from './lazy'
 export {isValidNumber, isInteger, floatToStr} from './num'

@@ -1,5 +1,5 @@
 export {isBrowser, ensureBrowser} from './dom.js'
-export {negate, identity, noop, not, chain} from './func.js'
+export {negate, identity, noop, not} from './func.js'
 export {asyncIteratorToArray, readableStreamToAsyncIterator, concatBuffers} from './iter-buffer.js'
 export {makeLazy, makeMemoize, makeLazySync} from './lazy.js'
 export {isValidNumber, isInteger, floatToStr} from './num.js'
@@ -9,4 +9,3 @@ export {sleep, cancellableSleep, setTimeoutUntil, setTimeoutUnlimited, timeoutWa
 export {as} from './type.js'
 
 export type {IgnoreLastIfVoid, UndefinedToNull, Nullable, UnionToIntersection, AllOrNone, Promisable} from './type.js'
-export type {IChainable} from './func.js'

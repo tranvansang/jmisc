@@ -5,7 +5,7 @@ export {makeLazy, makeMemoize, makeLazySync} from './lazy.js'
 export {isValidNumber, isInteger, floatToStr} from './num.js'
 export {recursiveSet, deepHas, get, set, deepPick, pick, omit, pluck, objectMap, emptyObject, emptyArray, isObject, zip} from './obj.js'
 export {capitalize, uncapitalize, base64ToURI, uriToBase64, isoBtoa, isoAtob, normalizeVietnamese} from './str.js'
-export {sleep, cancellableSleep, setTimeoutUntil, setTimeoutUnlimited, timeoutWait} from './time.js'
+export {sleep, setTimeoutUntil} from './time.js'
 export {as} from './type.js'
 
 export type {IgnoreLastIfVoid, UndefinedToNull, Nullable, UnionToIntersection, AllOrNone, Promisable} from './type.js'

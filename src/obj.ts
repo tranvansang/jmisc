@@ -55,7 +55,7 @@ type DeepPick<T, K extends string> = {
 
 export function deepPick<V, T extends string>(obj: V, keys: readonly T[]): DeepPick<V, T> {
 	return Object.fromEntries(
-		keys.filter(key => key in <any>obj)
+		keys.filter(key => obj && key in <any>obj)
 			.map(key => [key, get(obj, key)])
 	) as any
 }

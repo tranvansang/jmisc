@@ -12,7 +12,7 @@
   "author": "Sang Tran <t@sang.jp>",
   "license": "MIT",
   "scripts": {
-    "prepublish": "./compile.sh"
+    "prepublishOnly": "./compile.sh"
   },
   "files": [
     "cjs",
@@ -23,6 +23,5 @@
     "@types/react": "^18.2.15",
     "type-fest": "^4.0.0",
     "typescript": "^5.1.6"
-  },
-  "packageManager": "yarn@3.6.1"
+  }
 }

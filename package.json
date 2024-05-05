@@ -8,7 +8,10 @@
       "require": "./cjs/index.js"
     }
   },
-  "repository": "https://github.com/tranvansang/jsmisc.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tranvansang/jsmisc.git"
+  },
   "author": "Sang Tran <t@sang.jp>",
   "license": "MIT",
   "scripts": {

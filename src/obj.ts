@@ -1,5 +1,13 @@
 import type {Except, Get} from 'type-fest'
 
+// [] => true
+// primitive (string, number, bigint, boolean, null, undefined) => false
+// object => true
+// function => true
+export function isObject(obj: any) {
+	return obj === Object(obj)
+}
+
 export function recursiveSet<T, P extends string>(obj: T, [path, ...paths]: P[], val: any): T {
 	if (path === undefined) return val
 	if (Array.isArray(obj)) {
@@ -16,7 +24,7 @@ export function recursiveSet<T, P extends string>(obj: T, [path, ...paths]: P[],
 export function deepHas<T, P extends string>(obj: T, path: P): boolean {
 	for (
 		const k of path.split('.')
-		) if (k in <any>obj) obj = obj[k]
+		) if (isObject(obj) && k in <any>obj) obj = obj[k]
 	else return false
 	return true
 }
@@ -24,7 +32,7 @@ export function deepHas<T, P extends string>(obj: T, path: P): boolean {
 export function get<T, P extends string>(obj: T, path: P): Get<T, P> {
 	for (
 		const k of path.split('.')
-	) if (k in <any>obj) obj = obj[k]
+	) if (isObject(obj) && k in <any>obj) obj = obj[k]
 	else return undefined as any
 	return obj as any
 }
@@ -55,14 +63,14 @@ type DeepPick<T, K extends string> = {
 
 export function deepPick<V, T extends string>(obj: V, keys: readonly T[]): DeepPick<V, T> {
 	return Object.fromEntries(
-		keys.filter(key => obj && key in <any>obj)
+		keys.filter(key => isObject(obj) && key in <any>obj)
 			.map(key => [key, get(obj, key)])
 	) as any
 }
 
 export function pick<V, T extends keyof V>(obj: V, ...keys: readonly T[]): Pick<V, T> {
 	return Object.fromEntries(
-		keys.filter(key => key in <any>obj)
+		keys.filter(key => isObject(obj) && key in <any>obj)
 			.map(key => [key, obj[key]])
 	) as any
 }
@@ -87,14 +95,6 @@ export function objectMap<V, T extends keyof V, P>(obj: V, map: (value: V[T]) =>
 
 export const emptyArray = []
 export const emptyObject = {}
-// [] => true
-// primitive (string, number, bigint, boolean, null, undefined) => false
-// object => true
-
-// function => true
-export function isObject(obj: any) {
-	return obj === Object(obj)
-}
 
 export function* zip<T extends Iterable<any>>(
 	...iterables: T[]

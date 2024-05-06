@@ -8,7 +8,7 @@ export function isObject(obj: any) {
 	return obj === Object(obj)
 }
 
-export function recursiveSet<T, P extends string>(obj: T, [path, ...paths]: P[], val: any): T {
+function recursiveSet<T, P extends string>(obj: T, [path, ...paths]: P[], val: any): T {
 	if (path === undefined) return val
 	if (Array.isArray(obj)) {
 		const clone: any = [...obj]
@@ -21,7 +21,8 @@ export function recursiveSet<T, P extends string>(obj: T, [path, ...paths]: P[],
 	}
 }
 
-export function deepHas<T, P extends string>(obj: T, path: P): boolean {
+export function deepHas<T, P extends string>(obj: T, path?: P): boolean {
+	if (path === undefined) return true // empty path. object always includes itself
 	for (
 		const k of path.split('.')
 		) if (isObject(obj) && k in <any>obj) obj = obj[k]
@@ -29,7 +30,8 @@ export function deepHas<T, P extends string>(obj: T, path: P): boolean {
 	return true
 }
 
-export function get<T, P extends string>(obj: T, path: P): Get<T, P> {
+export function get<T, P extends string>(obj: T, path?: P): Get<T, P> {
+	if (path === undefined) return obj as any
 	for (
 		const k of path.split('.')
 	) if (isObject(obj) && k in <any>obj) obj = obj[k]
@@ -37,35 +39,9 @@ export function get<T, P extends string>(obj: T, path: P): Get<T, P> {
 	return obj as any
 }
 
-export function set<T, P extends string>(obj: T, path: P, val: Get<T, P>): T {
+export function set<T, P extends string>(obj: T, path: P | undefined, val: Get<T, P>): T {
+	if (path === undefined) return val
 	return recursiveSet(obj, path.split('.'), val)
-}
-
-// https://stackoverflow.com/questions/58434389/typescript-deep-keyof-of-a-nested-object
-// https://stackoverflow.com/questions/47057649/typescript-string-dot-notation-of-nested-object
-type Join<K, P> = K extends string | number ?
-	P extends string | number ?
-		`${K}${'' extends P ? '' : '.'}${P}`
-		: never : never
-type Prev = [never, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-	11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...0[]]
-type Paths<T, D extends number = 10> = [D] extends [never] ? never : T extends object ?
-	{
-		[K in keyof T]-?: K extends string | number ?
-		`${K}` | Join<K, Paths<T[K], Prev[D]>>
-		: never
-	}[keyof T] : ''
-type Leaves<T, D extends number = 10> = [D] extends [never] ? never : T extends object ?
-	{ [K in keyof T]-?: Join<K, Leaves<T[K], Prev[D]>> }[keyof T] : ''
-type DeepPick<T, K extends string> = {
-	[P in K]: Get<T, P>
-}
-
-export function deepPick<V, T extends string>(obj: V, keys: readonly T[]): DeepPick<V, T> {
-	return Object.fromEntries(
-		keys.filter(key => isObject(obj) && key in <any>obj)
-			.map(key => [key, get(obj, key)])
-	) as any
 }
 
 export function pick<V, T extends keyof V>(obj: V, ...keys: readonly T[]): Pick<V, T> {
@@ -80,10 +56,6 @@ export function omit<V, T extends keyof V>(obj: V, ...keys: readonly T[]): Excep
 		Object.keys(obj).filter(key => !keys.includes(key as any))
 			.map(key => [key, obj[key]])
 	) as any
-}
-
-export function pluck<V, T extends keyof V>(obj: V[], key: T): V[T][] {
-	return obj.map(o => o[key])
 }
 
 export function objectMap<V, T extends keyof V, P>(obj: V, map: (value: V[T]) => P): Record<T, P> {

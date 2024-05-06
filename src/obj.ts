@@ -17,7 +17,13 @@ function recursiveSet<T, P extends string>(obj: T, [path, ...paths]: P[], val: a
 	}
 	return {
 		...obj,
-		[path]: recursiveSet((obj as any)[path], paths, val)
+		[path]: recursiveSet(
+			isObject(obj) && path in (obj as any)
+				? (obj as any)[path]
+				: {},
+			paths,
+			val
+		)
 	}
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "jmisc",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "main": "cjs/index.js",
   "exports": {
     ".": {
@@ -19,7 +19,8 @@
   },
   "files": [
     "cjs",
-    "esm"
+    "esm",
+    "object.d.ts"
   ],
   "devDependencies": {
     "@types/node": "^20.4.3",
